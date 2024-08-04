@@ -1,0 +1,17 @@
+{
+   "name": "dev-timer",
+   "version": "1.0.0",
+   "description": "",
+   "main": "./dist/index.js",
+   "type": "module",
+   "scripts": {
+      "dev": "tsc && electron ."
+   },
+   "author": "",
+   "license": "ISC",
+   "devDependencies": {
+      "electron": "31.3.0",
+      "eslint": "9.8.0",
+      "typescript": "5.5.4"
+   }
+}

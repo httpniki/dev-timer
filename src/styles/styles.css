@@ -1,3 +1,24 @@
+@import url('timer.css');
+
+@font-face {
+   font-family: 'Arial-Rounded';
+   src: url(../../public/Arial_Rounded_MT.ttf);
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: 'Arial-Rounded-Bold';
+   src: url(../../public/Arial-Rounded-MT-Bold.ttf);
+   font-weight: bold;
+}
+
+:root {
+   --col-orange-700: #EC7357;
+   --col-soft-sand: #FDD692;
+   --col-dirty-brown: #754F44;
+   --col-blue-900: #272C3F;
+}
+
 * {
    box-sizing: border-box;
    min-width: 0;
@@ -5,12 +26,13 @@
 
 html {
    font-size: 10px;
+   font-family: 'Arial-Rounded';
 }
 
 body {
    margin: 0;
    min-height: 100dvh;
-   background-color: #EC7357;
+   background-color: var(--col-orange-700);
 }
 
 h1,
@@ -53,34 +75,7 @@ main {
    width: 100%;
 
    border-radius: 4px;
-   background-color: #FDD692;
-}
-
-#timer {
-   position: relative;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-
-   font-size: 3.2rem;
-   font-weight: bold;
-   color: #272C3F;
-}
-
-#timer-start-btn {
-   width: 15rem;
-   padding: 10px 0;
-
-   border: none;
-   border-radius: 4px;
-
-   background-color: #EC7357;
-
-   font-size: 1.8rem;
-   font-weight: bold;
-   color: #272C3F;
-   
-   box-shadow: 0 4px 0 #00000030;
+   background-color: var(--col-soft-sand);
 }
 
 header {
@@ -100,7 +95,7 @@ header {
    border: none;
    border-radius: 4px;
 
-   background-color: #754F44;
+   background-color: var(--col-dirty-brown);
 
    font-size: 1.4rem;
    color: #ffffff;
@@ -109,10 +104,12 @@ header {
 #add-todo-btn {
    width: 100%;
    padding: 12px 0;
-   border: 1px dashed #754F44;
+   border: 1px dashed var(--col-dirty-brown);
 
    background-color: #00000030;
-   color: #272C3F;
+
+   font-family: 'Arial-Rounded-Bold';
    font-weight: bold;
-   font-size: 1.4rem;
+   font-size: 1.5rem;
+   color: var(--col-blue-900);
 }

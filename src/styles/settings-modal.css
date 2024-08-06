@@ -1,0 +1,79 @@
+#settings-modal {
+   position: absolute;
+   inset: 0;
+
+   background-color: var(--col-orange-700);
+
+   z-index: 10;
+   visibility: hidden;
+}
+
+#settings-modal header {
+   position: relative;
+   padding: 10px 0;
+   border-bottom: 1px solid var(--col-dirty-brown);
+}
+
+#settings-modal header h1 {
+   margin: 0;
+   text-align: center;
+   font-family: 'Arial-Rounded-Bold';
+}
+
+#close-settings-button {
+   position: absolute;
+   right: 10px;
+   top: 50%;
+   translate: 0 -50%;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   background-color: inherit;
+   border: none;
+}
+
+#settings {
+   padding: 10px;
+}
+
+#time-settings-title {
+   margin: 4px 0;
+   font-size: 1.8rem;
+   font-family: 'Arial-Rounded-Bold';
+   color: var(--col-blue-900)
+}
+
+#time-settings {
+   display: flex;
+   gap: 10px;
+
+   padding: 0;
+   margin: 0;
+}
+
+.time-setting p {
+   margin: 2px 0;
+
+   font-size: 1.4rem;
+   font-style: bold;
+   font-family: 'Arial-Rounded-Bold';
+
+   color: var(--col-orange-900);
+}
+
+.time-setting input {
+   width: 6.5rem;
+
+   border: none;
+   padding: 6px 6px;
+
+   background-color: var(--col-soft-sand);
+   font-size: 1.6rem
+}
+
+.timer-setting input:focus {
+   outline: none;
+   border: none;
+}

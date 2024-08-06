@@ -5,7 +5,7 @@
    align-items: center;
 
    font-family: 'Arial-Rounded-Bold';
-   font-size: 3.2rem;
+   font-size: 4.2rem;
    font-weight: bold;
    color: var(--col-blue-900);
 }
@@ -38,8 +38,16 @@ div:has(#start-timer-button, #reset-timer-button) {
    font-weight: bold;
    color: var(--col-blue-900);
 
-   box-shadow: 0 4px 0 #00000030;
    transition: all 0.1s linear;
+}
+
+.unpress-button {
+   box-shadow: 0 4px 0 #00000030;
+}
+
+.press-button {
+   translate: 0 0.2rem;
+   box-shadow: none;
 }
 
 #start-timer-button:active {

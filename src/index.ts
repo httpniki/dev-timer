@@ -14,6 +14,4 @@ const createWindow = () => {
    win.webContents.openDevTools({ mode: 'detach' })
 }
 
-app.whenReady().then(() => {
-   createWindow()
-})
+app.whenReady().then(createWindow)

@@ -10,7 +10,21 @@
    color: var(--col-blue-900);
 }
 
-#timer-start-btn {
+#timer-legend {
+   height: 1.7rem;
+
+   font-size: 1.7rem;
+   font-weight: bold;
+   color: var(--col-blue-900)
+}
+
+div:has(#start-timer-button, #reset-timer-button) {
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+}
+
+#start-timer-button {
    width: 15rem;
    padding: 10px 0;
 
@@ -28,7 +42,14 @@
    transition: all 0.1s linear;
 }
 
-#timer-start-btn:active {
+#start-timer-button:active {
    translate: 0 0.2rem;
    box-shadow: none;
+}
+
+#reset-timer-button {
+   visibility: hidden;
+   border: none;
+   background: none;
+   color: var(--col-blue-900);
 }

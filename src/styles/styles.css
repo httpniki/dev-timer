@@ -1,4 +1,5 @@
 @import url('timer.css');
+@import url('settings-modal.css');
 
 @font-face {
    font-family: 'Arial-Rounded';
@@ -14,6 +15,7 @@
 
 :root {
    --col-orange-700: #EC7357;
+   --col-orange-900: #96351E;
    --col-soft-sand: #FDD692;
    --col-dirty-brown: #754F44;
    --col-blue-900: #272C3F;
@@ -44,6 +46,15 @@ h4 {
 
 p {
    text-wrap: pretty;
+   margin: 0;
+}
+
+li {
+   list-style: none;
+}
+
+button {
+   cursor: pointer;
 }
 
 button:focus {
@@ -68,17 +79,17 @@ main {
    display: flex;
    flex-direction: column;
    align-items: center;
-   justify-content: center;
-   gap: 20;
+   justify-content: space-around;
    flex-grow: 1;
 
    width: 100%;
-
+   padding: 4px 0;
    border-radius: 4px;
+
    background-color: var(--col-soft-sand);
 }
 
-header {
+#app-header {
    width: 100%;
    display: flex;
    flex-direction: row-reverse;
@@ -101,7 +112,7 @@ header {
    color: #ffffff;
 }
 
-#add-todo-btn {
+#add-task-button {
    width: 100%;
    padding: 12px 0;
    border: 1px dashed var(--col-dirty-brown);

@@ -1,5 +1,8 @@
 import HTMLElements from "./components/html-elements.js"
 import Settings from "./components/settings.js"
+import StartTimerButton from "./components/StartTimerButton.js"
+import TimerLegend from "./components/timer-legend.js"
+import VisualTimer from "./components/visual-timer.js"
 
 type TimerType = 'focus' | 'break'
 interface Time {
@@ -12,47 +15,46 @@ type OnRun = (
    { isFocusTime, isBreakTime }: { isFocusTime: boolean, isBreakTime: boolean }
 ) => void
 
-class App extends HTMLElements {
+class App {
    private settings = new Settings()
-   private timer: NodeJS.Timeout | null = null
+
+   private $resetTimerButton = document.getElementById('reset-timer-button') as HTMLButtonElement
+   private timerLegend = new TimerLegend()
+   private visualTimer = new VisualTimer()
+   private startButton = new StartTimerButton()
+
+   private interval: NodeJS.Timeout | null = null
+   private timerType: TimerType = 'focus'
    private time: Time = {
       minutes: 45,
       seconds: 0
    }
-   private timerType: TimerType = 'focus'
 
    constructor() {
-      super()
       this.time.minutes = this.settings.focusTime
    }
 
    public init() {
-      this.$startTimerButton.addEventListener('click', () => {
+      this.startButton.onClick(() => {
          this.$resetTimerButton.style.visibility = 'visible'
+         this.startButton.press()
 
-         if (!this.timer) return this.startTimer((time, { isFocusTime, isBreakTime }) => {
-            this.$startTimerButton.textContent = 'Stop'
+         if (!this.interval) return this.startTimer((time, { isFocusTime, isBreakTime }) => {
+            if (isFocusTime) this.timerLegend.setText().focus()
+            if (isBreakTime) this.timerLegend.setText().break()
 
-            if (isFocusTime) this.$timerLegend.textContent = 'Time to focus!'
-            if (isBreakTime) this.$timerLegend.textContent = 'Time to break!'
 
-            this.$timerMinutes.textContent = (time.minutes.toString().length === 1)
-               ? `0${time.minutes}`
-               : time.minutes.toString()
-
-            this.$timerSeconds.textContent = (time.seconds.toString().length === 1)
-               ? `0${time.seconds}`
-               : time.seconds.toString()
+            this.visualTimer.setTime({ minutes: time.minutes, seconds: time.seconds })
          })
 
-         if (this.timer) return this.clearTimer()
+         if (this.interval) return this.clearTimer()
       })
 
       this.$resetTimerButton.addEventListener('click', () => this.clearTimer({ reset: true }))
    }
 
    private startTimer(onRun: OnRun) {
-      this.timer = setInterval(() => {
+      this.interval = setInterval(() => {
          const isEnd = (this.time.minutes === 0 && this.time.seconds === 0)
          const isFocusTime = this.timerType === 'focus'
          const isBreakTime = this.timerType === 'break'
@@ -83,15 +85,14 @@ class App extends HTMLElements {
    private clearTimer(args?: { reset: boolean }) {
       const { reset = false } = args ?? {}
 
-      if (this.timer) clearInterval(this.timer)
-      this.timer = null
-      this.$startTimerButton.textContent = 'Start'
-      this.$timerLegend.textContent = ''
+      if (this.interval) clearInterval(this.interval)
+      this.interval = null
+      this.startButton.unpress()
+      this.timerLegend.setText().none()
 
       if (reset) {
          this.$resetTimerButton.style.visibility = 'hidden'
-         this.$timerMinutes.textContent = '00'
-         this.$timerSeconds.textContent = '00'
+         this.visualTimer.setTime({ minutes: 0o0, seconds: 0o0 })
          this.timerType = 'focus'
          this.time = {
             minutes: this.settings.focusTime,

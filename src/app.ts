@@ -21,7 +21,7 @@ class App {
          const isPaused = this.timer.hasTimer && !this.timer.isRunning
 
          this.$resetTimerButton.style.visibility = 'visible'
-         this.startButton.press()
+         this.startButton.press({ sounds: true })
 
          if (!this.timer.hasTimer) {
             return this.timer.start({
@@ -47,6 +47,10 @@ class App {
                   }
                },
                onEnd: () => {
+                  const notificationSound = new Audio('public/notification.mp3')
+                  notificationSound.volume = 0.2
+                  notificationSound.play()
+
                   if (this.timerType === 'focus') {
                      this.timerType = 'break'
                      this.timer.setTime(this.settings.breakTime, 0)
@@ -63,11 +67,11 @@ class App {
          }
 
          if (isUnPaused) {
-            this.startButton.unpress()
+            this.startButton.unpress({ sounds: true })
             return this.timer.pause()
          }
          if (isPaused) {
-            this.startButton.press()
+            this.startButton.press({ sounds: true })
             return this.timer.unPause()
          }
       })

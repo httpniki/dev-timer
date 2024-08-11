@@ -1,7 +1,7 @@
 import Settings from "./components/Settings.js"
 import StartTimerButton from "./components/StartTimerButton.js"
-import TimerLegend from "./components/timer-legend.js"
-import VisualTimer from "./components/visual-timer.js"
+import TimerLegend from "./components/TimerLegend.js"
+import VisualTimer from "./components/VisualTimer.js"
 import Timer from "./lib/timer.js"
 
 class App {

@@ -1,0 +1,131 @@
+#render-tasks-button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 4px;
+
+   width: 100%;
+   padding: 10px 0;
+   border: 1px dashed var(--col-dirty-brown);
+
+   background-color: #00000030;
+
+   font-family: 'Arial-Rounded-Bold';
+   font-weight: bold;
+   font-size: 1.5rem;
+   color: var(--col-blue-900);
+}
+
+#tasks-section {
+   display: none;
+   flex-direction: column;
+   flex-grow: 1;
+   gap: 5px;
+
+   width: 100%;
+
+   background-color: var(--col-orange-700);
+   color: var(--col-blue-900);
+
+   overflow-y: auto;
+}
+
+#new-task-input-wrapper {
+   display: flex;
+   position: relative;
+
+   width: 100%;
+   background-color: var(--col-soft-sand)
+}
+
+#new-task-input-wrapper input {
+   flex-grow: 1;
+   padding: 10px 8px;
+
+   border: none;
+   font-size: 1.6rem;
+   vertical-align: center;
+
+   color: var(--col-blue-900);
+   background-color: inherit;
+}
+
+
+#new-task-input-wrapper input::placeholder {
+   font-size: 1.5rem;
+
+   color: var(--col-blue-900);
+
+   vertical-align: center;
+   opacity: 0.7;
+}
+
+#new-task-input-wrapper button {
+   height: inherit;
+
+   padding: 0px 8px;
+   border: none;
+
+   font-weight: bold;
+   color: var(--col-blue-900);
+   background-color: inherit;
+}
+
+#tasks {
+   position: relative;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   flex-grow: 1;
+   gap: 8px;
+
+   padding: 5px 0;
+
+   background-color: var(--col-soft-sand);
+
+   font-size: 1.6rem;
+}
+
+.no-tasks {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#no-tasks-message {
+   text-align: center;
+   margin: auto;
+   font-weight: bold;
+   color: var(--col-blue-900);
+   opacity: 0.5;
+}
+
+.task {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 4px;
+
+   padding: 4px 5px;
+
+   background-color: var(--col-orange-900);
+   color: #F2B37F;
+   word-break: break-all;
+}
+
+.task button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   min-width: max-content;
+   height: min-content;
+
+   padding: 0 5px;
+
+   border: none;
+   background-color: var(--col-orange-900);
+   color: #F2B37F;
+}

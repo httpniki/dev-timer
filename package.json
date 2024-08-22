@@ -2,7 +2,7 @@
    "name": "dev-timer",
    "version": "1.0.0",
    "description": "",
-   "main": "./dist/index.js",
+   "main": "./dist/render.js",
    "type": "module",
    "scripts": {
       "dev": "tsc && electron ."

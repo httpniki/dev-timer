@@ -34,7 +34,25 @@
          </div>
       </section>
 
-      <button id="add-task-button">+ Add Task</button>
+      <button id="render-tasks-button">
+         <svg xmlns="http://www.w3.org/2000/svg" height="1.6em" viewBox="0 0 24 24">
+            <path fill="currentColor"
+               d="m10.95 18l5.65-5.65l-1.45-1.45l-4.225 4.225l-2.1-2.1L7.4 14.45zM6 22q-.825 0-1.412-.587T4 20V4q0-.825.588-1.412T6 2h8l6 6v12q0 .825-.587 1.413T18 22zm7-13V4H6v16h12V9zM6 4v5zv16z" />
+         </svg>
+
+         <span>Open tasks</span>
+      </button>
+
+      <section id="tasks-section">
+         <form id="new-task-input-wrapper">
+            <input type="text" placeholder="What do you have to do today?" />
+            <button>Save</button>
+         </form>
+
+         <ul id="tasks" class="no-tasks">
+            <li id="no-tasks-message">You still don't have any tasks!</li>
+         </ul>
+      </section>
    </main>
 
    <div id="settings-modal">
@@ -68,7 +86,20 @@
       </article>
    </div>
 
+   <template>
+      <li class="task">
+         <p></p>
+         <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="2.8rem" viewBox="0 0 24 24">
+               <path fill="currentColor"
+                  d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6zM8 9h8v10H8zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
+            </svg>
+         </button>
+      </li>
+   </template>
+
    <script type="module" src="dist/app.js"></script>
+   <script type="module" src="dist/tasks.js"></script>
 </body>
 
 </html>

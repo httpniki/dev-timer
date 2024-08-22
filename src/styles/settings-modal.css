@@ -1,3 +1,20 @@
+#settings-btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 3px;
+
+   width: min-content;
+   padding: 6px 5px;
+   border: none;
+   border-radius: 4px;
+
+   background-color: var(--col-dirty-brown);
+
+   font-size: 1.4rem;
+   color: #ffffff;
+}
+
 #settings-modal {
    position: absolute;
    inset: 0;

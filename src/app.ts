@@ -16,6 +16,8 @@ class App {
    private timerType: 'focus' | 'break' = 'focus'
 
    init() {
+      this.visualTimer.setTime({ minutes: this.settings.focusTime, seconds: 0 })
+
       this.startButton.onClick(() => {
          const isUnPaused = this.timer.hasTimer && this.timer.isRunning
          const isPaused = this.timer.hasTimer && !this.timer.isRunning

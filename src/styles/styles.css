@@ -1,5 +1,5 @@
 @import url('timer.css');
-@import url('settings-modal.css');
+@import url('settings.css');
 @import url('tasks.css');
 
 @font-face {
@@ -103,4 +103,21 @@ main {
    display: flex;
    flex-direction: row-reverse;
    width: 100%;
+}
+
+#settings-btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 3px;
+
+   width: min-content;
+   padding: 6px 5px;
+   border: none;
+   border-radius: 4px;
+
+   background-color: var(--col-dirty-brown);
+
+   font-size: 1.4rem;
+   color: #ffffff;
 }

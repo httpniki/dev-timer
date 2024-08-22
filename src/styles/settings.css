@@ -1,21 +1,4 @@
-#settings-btn {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 3px;
-
-   width: min-content;
-   padding: 6px 5px;
-   border: none;
-   border-radius: 4px;
-
-   background-color: var(--col-dirty-brown);
-
-   font-size: 1.4rem;
-   color: #ffffff;
-}
-
-#settings-modal {
+#settings {
    position: absolute;
    inset: 0;
 
@@ -25,19 +8,19 @@
    visibility: hidden;
 }
 
-#settings-modal header {
+#settings header {
    position: relative;
    padding: 10px 0;
    border-bottom: 1px solid var(--col-dirty-brown);
 }
 
-#settings-modal header h1 {
+#settings header h1 {
    margin: 0;
    text-align: center;
    font-family: 'Arial-Rounded-Bold';
 }
 
-#close-settings-button {
+#close-settings-btn {
    position: absolute;
    right: 10px;
    top: 50%;
@@ -51,18 +34,18 @@
    border: none;
 }
 
-#settings {
+#settings section {
    padding: 10px;
 }
 
-#time-settings-title {
+#settings section h3 {
    margin: 4px 0;
    font-size: 1.8rem;
    font-family: 'Arial-Rounded-Bold';
    color: var(--col-blue-900)
 }
 
-#time-settings {
+#timer-settings ul {
    display: flex;
    gap: 10px;
 
@@ -70,17 +53,7 @@
    margin: 0;
 }
 
-.time-setting p {
-   margin: 2px 0;
-
-   font-size: 1.4rem;
-   font-style: bold;
-   font-family: 'Arial-Rounded-Bold';
-
-   color: var(--col-orange-900);
-}
-
-.time-setting input {
+#timer-settings ul li input {
    width: 6.5rem;
 
    border: none;
@@ -90,7 +63,18 @@
    font-size: 1.6rem
 }
 
-.timer-setting input:focus {
+#timer-settings-list ul li input:focus {
    outline: none;
    border: none;
 }
+
+.settings-item-title {
+   margin: 2px 0;
+
+   font-size: 1.4rem;
+   font-style: bold;
+   font-family: 'Arial-Rounded-Bold';
+
+   color: var(--col-orange-900);
+}
+

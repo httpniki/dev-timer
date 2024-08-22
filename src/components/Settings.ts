@@ -21,9 +21,9 @@ export default class Settings {
    }
 
    private setup() {
-      const $settingsModal = document.getElementById('settings-modal') as HTMLDivElement
+      const $settingsModal = document.getElementById('settings') as HTMLDivElement
       const $openSettingsbutton = document.getElementById('settings-btn') as HTMLButtonElement
-      const $closeSettingsButton = document.getElementById('close-settings-button') as HTMLButtonElement
+      const $closeSettingsButton = document.getElementById('close-settings-btn') as HTMLButtonElement
 
       $openSettingsbutton.addEventListener('click', (event) => {
          $settingsModal.style.visibility = 'visible'

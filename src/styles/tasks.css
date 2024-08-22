@@ -111,7 +111,8 @@
    padding: 4px 5px;
 
    background-color: var(--col-orange-900);
-   color: #F2B37F;
+
+   color: var(--col-orange-100);
    word-break: break-all;
 }
 
@@ -127,5 +128,6 @@
 
    border: none;
    background-color: var(--col-orange-900);
-   color: #F2B37F;
+
+   color: var(--col-orange-100);
 }

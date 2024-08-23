@@ -14,7 +14,7 @@ class App {
    private $nextStageButton = document.getElementById('next-stage-button') as HTMLButtonElement
 
    private timer = new Timer()
-   private timerType: 'focus' | 'break' = 'focus'
+   private stage: 'focus' | 'break' = 'focus'
 
    init() {
       this.visualTimer.setTime({ minutes: this.settings.focusTime, seconds: 0 })
@@ -31,14 +31,14 @@ class App {
                minutes: this.settings.focusTime,
                seconds: 0,
                onRun: () => {
-                  if (this.timerType === 'focus') this.timerLegend.setText().focus()
-                  if (this.timerType === 'break') this.timerLegend.setText().break()
-                  this.$nextStageButton.style.visibility = 'visible'
+                  const isFocusStageTextMismatch = this.timerLegend.currentText === this.timerLegend.stageText.focus
+                  const isBreakStageTextMismatch = this.timerLegend.currentText === this.timerLegend.stageText.break
 
-                  this.visualTimer.setTime({
-                     minutes: this.timer.time.minutes,
-                     seconds: this.timer.time.seconds
-                  })
+                  if (this.stage === 'focus' && !isFocusStageTextMismatch) this.timerLegend.setText().focus()
+                  if (this.stage === 'break' && !isBreakStageTextMismatch) this.timerLegend.setText().break()
+                  if (this.$nextStageButton.style.visibility !== 'visible') this.$nextStageButton.style.visibility = 'visible'
+
+                  this.visualTimer.setTime(this.timer.time)
 
                   this.settings.onOpen = () => {
                      this.startButton.unpress()
@@ -55,29 +55,32 @@ class App {
                   notificationSound.volume = 0.2
                   notificationSound.play()
 
-                  if (this.timerType === 'focus') {
-                     this.timerType = 'break'
-                     this.timer.setTime(this.settings.breakTime, 0)
-
-                     if (!this.settings.autoStartBreak) {
-                        this.timer.pause()
-                        this.startButton.unpress({ sounds: true })
-                     }
-
-                     return
+                  const newStage = (this.stage === 'focus') ? 'break' : 'focus'
+                  const newTime = {
+                     minutes: 0,
+                     seconds: 0
                   }
 
-                  if (this.timerType === 'break') {
-                     this.timerType = 'focus'
-                     this.timer.setTime(this.settings.focusTime, 0)
+                  if (newStage === 'focus') {
+                     newTime.minutes = this.settings.focusTime
 
                      if (!this.settings.autoStartFocus) {
                         this.timer.pause()
                         this.startButton.unpress({ sounds: true })
                      }
-
-                     return
                   }
+
+                  if (newStage === 'break') {
+                     newTime.minutes = this.settings.breakTime
+
+                     if (!this.settings.autoStartBreak) {
+                        this.timer.pause()
+                        this.startButton.unpress({ sounds: true })
+                     }
+                  }
+
+                  this.timer.setTime(newTime.minutes, newTime.seconds)
+                  this.stage = newStage
                }
             })
          }
@@ -94,20 +97,25 @@ class App {
 
       this.$nextStageButton.addEventListener('click', () => {
          this.timer.stop()
+         let newTime = { minutes: 0, seconds: 0 }
+         let newStage: 'focus' | 'break' = 'focus'
 
-         if (this.timerType === 'focus') {
-            this.timerType = 'break'
-            this.visualTimer.setTime({ minutes: this.settings.breakTime, seconds: 0 })
-            this.timerLegend.setText().break()
-            return this.timer.start({ minutes: this.settings.breakTime, seconds: 0 })
+         if (this.stage === 'focus') {
+            newStage = 'break'
+            newTime.minutes = this.settings.breakTime
          }
 
-         if (this.timerType === 'break') {
-            this.timerType = 'focus'
-            this.timerLegend.setText().focus()
-            this.visualTimer.setTime({ minutes: this.settings.focusTime, seconds: 0 })
-            return this.timer.start({ minutes: this.settings.focusTime, seconds: 0 })
+         if (this.stage === 'break') {
+            newStage = 'focus'
+            newTime.minutes = this.settings.focusTime
          }
+
+         if (newStage === 'break') this.timerLegend.setText().break()
+         if (newStage === 'focus') this.timerLegend.setText().focus()
+
+         this.stage = newStage
+         this.visualTimer.setTime(newTime)
+         this.timer.start(newTime)
       })
 
       this.$resetTimerButton.addEventListener('click', () => {
@@ -119,7 +127,7 @@ class App {
          this.$resetTimerButton.style.visibility = 'hidden'
          this.$nextStageButton.style.visibility = 'hidden'
 
-         this.timerType = 'focus'
+         this.stage = 'focus'
          this.timer.setTime(this.settings.focusTime, 0)
       })
    }

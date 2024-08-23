@@ -103,15 +103,14 @@ class App {
          if (this.stage === 'focus') {
             newStage = 'break'
             newTime.minutes = this.settings.breakTime
+            this.timerLegend.setText().break()
          }
 
          if (this.stage === 'break') {
             newStage = 'focus'
             newTime.minutes = this.settings.focusTime
+            this.timerLegend.setText().focus()
          }
-
-         if (newStage === 'break') this.timerLegend.setText().break()
-         if (newStage === 'focus') this.timerLegend.setText().focus()
 
          this.stage = newStage
          this.visualTimer.setTime(newTime)

@@ -5,7 +5,8 @@
    "main": "./dist/render.js",
    "type": "module",
    "scripts": {
-      "dev": "tsc && electron ."
+      "start:dev": "export NODE_ENV=development || set NODE_ENV=development && tsc && electron .",
+      "start": "electron ."
    },
    "author": "",
    "license": "ISC",

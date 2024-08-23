@@ -6,9 +6,13 @@ interface Args {
 export default class Settings {
    private readonly $focusTimeInput = document.getElementById('focus-time-input') as HTMLInputElement
    private readonly $breakTimeInput = document.getElementById('break-time-input') as HTMLInputElement
+   private readonly $autoStartFocusCheckbox = document.getElementById('autostart-focus-input')
+   private readonly $autoStartBreakCheckbox = document.getElementById('autostart-break-input')
    focusTime = 45
    breakTime = 15
    isRendered = false
+   autoStartFocus = true
+   autoStartBreak = true
    onOpen!: Args['onOpen']
    onClose!: Args['onClose']
 
@@ -44,6 +48,20 @@ export default class Settings {
 
       this.$breakTimeInput.addEventListener('input', (event) => {
          this.breakTime = Number((event.target as HTMLInputElement).value)
+      })
+
+      this.$autoStartFocusCheckbox?.addEventListener('input', (event) => {
+         const target = event.target as HTMLInputElement
+
+         if (target.checked) this.autoStartFocus = true
+         if (!target.checked) this.autoStartFocus = false
+      })
+
+      this.$autoStartBreakCheckbox?.addEventListener('input', (event) => {
+         const target = event.target as HTMLInputElement
+
+         if (target.checked) this.autoStartBreak = true
+         if (!target.checked) this.autoStartBreak = false
       })
    }
 }

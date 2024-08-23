@@ -56,12 +56,23 @@ class App {
                   if (this.timerType === 'focus') {
                      this.timerType = 'break'
                      this.timer.setTime(this.settings.breakTime, 0)
+
+                     if (!this.settings.autoStartBreak) {
+                        this.timer.pause()
+                        this.startButton.unpress({ sounds: true })
+                     }
+
                      return
                   }
 
                   if (this.timerType === 'break') {
                      this.timerType = 'focus'
                      this.timer.setTime(this.settings.focusTime, 0)
+
+                     if (!this.settings.autoStartFocus) {
+                        this.timer.pause()
+                        this.startButton.unpress({ sounds: true })
+                     }
                      return
                   }
                }
@@ -82,6 +93,7 @@ class App {
          this.timer.stop()
          this.startButton.unpress()
 
+         this.timerLegend.setText().none()
          this.visualTimer.setTime({ minutes: this.settings.focusTime, seconds: 0 })
          this.$resetTimerButton.style.visibility = 'hidden'
 

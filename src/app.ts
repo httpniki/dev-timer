@@ -11,6 +11,7 @@ class App {
    private timerLegend = new TimerLegend()
    private visualTimer = new VisualTimer()
    private startButton = new StartTimerButton()
+   private $nextStageButton = document.getElementById('next-stage-button') as HTMLButtonElement
 
    private timer = new Timer()
    private timerType: 'focus' | 'break' = 'focus'
@@ -32,6 +33,7 @@ class App {
                onRun: () => {
                   if (this.timerType === 'focus') this.timerLegend.setText().focus()
                   if (this.timerType === 'break') this.timerLegend.setText().break()
+                  this.$nextStageButton.style.visibility = 'visible'
 
                   this.visualTimer.setTime({
                      minutes: this.timer.time.minutes,
@@ -73,6 +75,7 @@ class App {
                         this.timer.pause()
                         this.startButton.unpress({ sounds: true })
                      }
+
                      return
                   }
                }
@@ -89,6 +92,24 @@ class App {
          }
       })
 
+      this.$nextStageButton.addEventListener('click', () => {
+         this.timer.stop()
+
+         if (this.timerType === 'focus') {
+            this.timerType = 'break'
+            this.visualTimer.setTime({ minutes: this.settings.breakTime, seconds: 0 })
+            this.timerLegend.setText().break()
+            return this.timer.start({ minutes: this.settings.breakTime, seconds: 0 })
+         }
+
+         if (this.timerType === 'break') {
+            this.timerType = 'focus'
+            this.timerLegend.setText().focus()
+            this.visualTimer.setTime({ minutes: this.settings.focusTime, seconds: 0 })
+            return this.timer.start({ minutes: this.settings.focusTime, seconds: 0 })
+         }
+      })
+
       this.$resetTimerButton.addEventListener('click', () => {
          this.timer.stop()
          this.startButton.unpress()
@@ -96,6 +117,7 @@ class App {
          this.timerLegend.setText().none()
          this.visualTimer.setTime({ minutes: this.settings.focusTime, seconds: 0 })
          this.$resetTimerButton.style.visibility = 'hidden'
+         this.$nextStageButton.style.visibility = 'hidden'
 
          this.timerType = 'focus'
          this.timer.setTime(this.settings.focusTime, 0)

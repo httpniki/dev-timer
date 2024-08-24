@@ -31,11 +31,11 @@ class App {
                minutes: this.settings.focusTime,
                seconds: 0,
                onRun: () => {
-                  const isFocusStageTextMismatch = this.timerLegend.currentText === this.timerLegend.stageText.focus
-                  const isBreakStageTextMismatch = this.timerLegend.currentText === this.timerLegend.stageText.break
+                  const isFocusStageText = this.timerLegend.currentText === this.timerLegend.stageText.focus
+                  const isBreakStageText = this.timerLegend.currentText === this.timerLegend.stageText.break
 
-                  if (this.stage === 'focus' && !isFocusStageTextMismatch) this.timerLegend.setText().focus()
-                  if (this.stage === 'break' && !isBreakStageTextMismatch) this.timerLegend.setText().break()
+                  if (this.stage === 'focus' && !isFocusStageText) this.timerLegend.setText().focus()
+                  if (this.stage === 'break' && !isBreakStageText) this.timerLegend.setText().break()
                   if (this.$nextStageButton.style.visibility !== 'visible') this.$nextStageButton.style.visibility = 'visible'
 
                   this.visualTimer.setTime(this.timer.time)
